@@ -162,19 +162,3 @@ df_aero.write.format("delta").option("overwriteSchema", "true").mode("overwrite"
 # MAGIC order by rn desc
 
 # COMMAND ----------
-
-# MAGIC %sql
-# MAGIC 
-# MAGIC select
-# MAGIC 	'razão_social','icaoaeródromoorigem','icaoaeródromodestino','endereço_sede',icao,
-# MAGIC 	
-# MAGIC 	dense_rank () OVER ( PARTITION BY 'icaoaeródromoorigem', 'icaoaeródromodestino' ORDER BY 'razão_social' DESC ) as rn
-# MAGIC from
-# MAGIC 	VRA INNER JOIN AIR_CIA on  AIR_CIA.'icao'  = 'icao' VRA.'icao'
-# MAGIC ) 
-# MAGIC order by rn desc
-
-# COMMAND ----------
-
-# MAGIC %sql
-# MAGIC select * from Bronze.VRA
